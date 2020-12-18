@@ -5,7 +5,11 @@
     <div>
         <span>1</span>
         <span>2</span>
-        <span>3</span>
-        <span>4</span>
+        {% if user.is_authenticated %}
+        <a href="{% url 'accounts:logout' %}?next={{ request.path }}"><span>Log out</span></a>
+        {% else %}
+        <a href="{% url 'accounts:create' %}?next={{ request.path }}"><span>Sign Up</span></a>
+        <a href="{% url 'accounts:login' %}?next={{ request.path }}"><span>Log In</span></a>
+        {% endif %}
     </div>
 </header>
