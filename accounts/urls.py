@@ -7,5 +7,5 @@ from . import views
 app_name = "accounts"
 
 urlpatterns = [
-    path("helloworld/", views.hello_world, name="helloworld"),
+    path("create/", views.AccountCreateView.as_view(), name="create"),
 ]
