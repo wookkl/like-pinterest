@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div style="text-align: center; max-width: 400px; margin: 4rem auto;">
+    <div>
+        <form action="{% url 'accounts:delete' user.pk %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-dark rounded-pill col-4 mt-3" value="Delete Account" />
+        </form>
+    </div>
+</div>
+{% endblock content %}
