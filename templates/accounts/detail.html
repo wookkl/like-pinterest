@@ -4,10 +4,12 @@
 {% block content %}
 <div style="text-align: center; max-width: 400px; margin: 4rem auto;">
     <div>
-        <h4>My page</h4>
+        {{ target_user.username }}
     </div>
     <div>
-        {{ user.username }}
+        {% if user == target_user %}
+        <a href="{% url 'accounts:update' user.pk %}">Change Information</a>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
