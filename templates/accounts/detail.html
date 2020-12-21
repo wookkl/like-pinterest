@@ -8,8 +8,9 @@
             <img class="rounded-pill" style="height: 10rem; width: 10rem;" src="{{ target_user.profile.image.url }}" alt="photo">
             {{ target_user.profile.nickname }}
             {{ target_user.profile.status_message }}
-            <a href=" {% url 'profiles:update' target_user.profile.pk %}">Update profile</a>
-        
+            {% if user == target_user and user.is_authenticated %}
+                <a href=" {% url 'profiles:update' target_user.profile.pk %}">Update profile</a>
+            {% endif %}
         {% else %}
             {% if user == target_user %}
                 <a href=" {% url 'profiles:create' %}">Create profile</a>

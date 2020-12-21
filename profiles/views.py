@@ -21,7 +21,7 @@ class ProfileCreateView(CreateView):
     template_name = "profile/create.html"
 
     def get_success_url(self):
-        user_pk = self.request.user.pk
+        user_pk = self.object.user.pk
         return reverse_lazy("accounts:detail", kwargs={"pk": user_pk})
 
     def form_valid(self, form):
@@ -40,5 +40,5 @@ class ProfileUpdateView(UpdateView):
     template_name = "profile/update.html"
 
     def get_success_url(self):
-        user_pk = self.request.user.pk
+        user_pk = self.object.user.pk
         return reverse_lazy("accounts:detail", kwargs={"pk": user_pk})
