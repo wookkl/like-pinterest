@@ -1,6 +1,12 @@
 # Django
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    UpdateView,
+    DeleteView,
+    ListView,
+)
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -66,3 +72,14 @@ class ArticleDeleteView(DeleteView):
     context_object_name = "target_article"
     template_name = "articles/delete.html"
     success_url = reverse_lazy("core:home")
+
+
+class ArticleListView(ListView):
+
+    """Article List View Definition """
+
+    model = Article
+    context_object_name = "article_list"
+    template_name = "home.html"
+    paginate_by = 25
+    paginate_orphans = 5

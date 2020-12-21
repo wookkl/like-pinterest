@@ -7,4 +7,4 @@ from articles import views
 
 app_name = "core"
 
-urlpatterns = [path("", TemplateView.as_view(template_name="home.html"), name="home")]
+urlpatterns = [path("", views.ArticleListView.as_view(), name="home")]

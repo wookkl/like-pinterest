@@ -2,39 +2,27 @@
 {% load static %}
 
 {% block content %}
-<style>
-    .container div {
-        width: 250px;
-        background-color: antiquewhite;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 1rem;
-    }
-    .container img {
-        width:100%;
-        border-radius: 1rem 1rem 0 0;
-    }
-</style>
-<div style="text-align: center;">
-    <div class="container">
-        <div class="item1"><img style="max-height: 25rem;" src="https://picsum.photos/200/300"/></div>
-        <div class="item2"><img style="max-height: 25rem;" src="https://picsum.photos/211/321"/></div>
-        <div class="item3"><img style="max-height: 25rem;" src="https://picsum.photos/253/352"/></div>
-        <div class="item4"><img style="max-height: 25rem;" src="https://picsum.photos/230/320"/></div>
-        <div class="item5"><img style="max-height: 25rem;" src="https://picsum.photos/240/364"/></div>
-        <div class="item6"><img style="max-height: 25rem;" src="https://picsum.photos/200/373"/></div>
-        <div class="item7"><img style="max-height: 25rem;" src="https://picsum.photos/240/500"/></div>
-        <div class="item8"><img style="max-height: 25rem;" src="https://picsum.photos/200/220"/></div>
-        <div class="item9"><img style="max-height: 25rem;" src="https://picsum.photos/260/340"/></div>
-        <div class="item10"><img style="max-height: 25rem;" src="https://picsum.photos/250/650"/></div>
-        <div class="item11"><img style="max-height: 25rem;" src="https://picsum.photos/203/520"/></div>
-        <div class="item12"><img style="max-height: 25rem;" src="https://picsum.photos/202/270"/></div>
-        <div class="item13"><img style="max-height: 25rem;" src="https://picsum.photos/201/340"/></div>
-    </div>
-    <div>
-        <a class="btn btn-dark rounded-pill col-3 mt-3 mb-3 "href="{% url 'articles:create' %}">Create Article</a>
-    </div>
-</div> 
-<script src="{% static 'js/magicgrid.js' %}"></script>
+    <div style="text-align: center;">
+        
+        {% if article_list %}
+            <div class="container">
+                {% for article in article_list %}
+                    <a style="display: block;" href="{% url 'articles:detail' article.pk %}">
+                    {% include 'mixins/article.html' with article=article %}
+                    </a> 
+                {% endfor %}
+            </div>
+        {% else %}
+            <div>
+                <h1>No Articles yet</h1>
+            </div>
+        {% endif %}
+            
+        {% include 'mixins/pagination.html' with page_obj=page_obj%}
+        
+        <div>
+            <a class="btn btn-dark rounded-pill col-3 mt-3 mb-3 "href="{% url 'articles:create' %}">Create Article</a>
+        </div>
+    </div> 
+    <script src="{% static 'js/magicgrid.js' %}"></script>
 {% endblock content %}
