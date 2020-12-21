@@ -1,7 +1,37 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<style>
+    .container div {
+        width: 250px;
+        background-color: antiquewhite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+    }
+    .container img {
+        width:100%;
+        border-radius: 1rem 1rem 0 0;
+    }
+</style>
 <div style="text-align: center;">
-    <h1>Home</h1>
-</div>
+    <div class="container">
+        <div class="item1"><img style="max-height: 25rem;" src="https://picsum.photos/200/300"/></div>
+        <div class="item2"><img style="max-height: 25rem;" src="https://picsum.photos/211/321"/></div>
+        <div class="item3"><img style="max-height: 25rem;" src="https://picsum.photos/253/352"/></div>
+        <div class="item4"><img style="max-height: 25rem;" src="https://picsum.photos/230/320"/></div>
+        <div class="item5"><img style="max-height: 25rem;" src="https://picsum.photos/240/364"/></div>
+        <div class="item6"><img style="max-height: 25rem;" src="https://picsum.photos/200/373"/></div>
+        <div class="item7"><img style="max-height: 25rem;" src="https://picsum.photos/240/500"/></div>
+        <div class="item8"><img style="max-height: 25rem;" src="https://picsum.photos/200/220"/></div>
+        <div class="item9"><img style="max-height: 25rem;" src="https://picsum.photos/260/340"/></div>
+        <div class="item10"><img style="max-height: 25rem;" src="https://picsum.photos/250/650"/></div>
+        <div class="item11"><img style="max-height: 25rem;" src="https://picsum.photos/203/520"/></div>
+        <div class="item12"><img style="max-height: 25rem;" src="https://picsum.photos/202/270"/></div>
+        <div class="item13"><img style="max-height: 25rem;" src="https://picsum.photos/201/340"/></div>
+    </div>
+</div> 
+<script src="{% static 'js/magicgrid.js' %}"></script>
 {% endblock content %}

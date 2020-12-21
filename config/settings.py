@@ -46,6 +46,8 @@ DJANGO_APPS = [
 PROJECT_APPS = [
     "accounts.apps.AccountsConfig",
     "profiles.apps.ProfilesConfig",
+    "articles.apps.ArticlesConfig",
+    "core.apps.CoreConfig",
 ]
 
 THIRD_PARTY_APPS = [
@@ -148,5 +150,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 
 MEDIA_URL = "/media/"
 
-# LOGIN_REDIRECT_URL = '/your-path'
 LOGOUT_REDIRECT_URL = reverse_lazy("accounts:login")
+LOGIN_REDIRECT_URL = reverse_lazy("core:home")
