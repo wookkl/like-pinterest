@@ -9,9 +9,13 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+# System
 from pathlib import Path
 import os
+
+# Django
+from django.urls import reverse_lazy
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +45,7 @@ DJANGO_APPS = [
 
 PROJECT_APPS = [
     "accounts.apps.AccountsConfig",
+    "profiles.apps.ProfilesConfig",
 ]
 
 THIRD_PARTY_APPS = [
@@ -126,7 +131,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -138,5 +142,10 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# LOGIN_REDIRECT_URL = '/your-path
-# LOGOUT_REDIRECT_URL = '/your-path''
+# Media
+MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
+
+MEDIA_URL = "/media/"
+
+# LOGIN_REDIRECT_URL = '/your-path'
+LOGOUT_REDIRECT_URL = reverse_lazy("accounts:login")

@@ -37,3 +37,11 @@ class CBV():
     def get(*args, **kwargs):
         pass
 ```
+
+### form ImageField
+
+- form 태그안에 이미지 필드를 받으려면 enctype속성에 'multipart/form-data'를 명시해줘야함
+
+```html
+<form action="" method="POST" enctype="multipart/form-data"></form>
+```
