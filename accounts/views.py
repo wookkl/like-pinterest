@@ -2,17 +2,17 @@
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 
 # local Django
-from . import forms
-from . import decorators
+from .forms import AccountUpdateForm
+from .decorators import account_ownership_required
 
-ownershtp_decorators = [login_required, decorators.account_ownership_required]
+ownership_decorators = [login_required, account_ownership_required]
 
 
 class AccountCreateView(CreateView):
@@ -52,21 +52,21 @@ class AccountDetailView(DetailView):
     context_object_name = "target_user"
 
 
-@method_decorator(ownershtp_decorators, "get")
-@method_decorator(ownershtp_decorators, "post")
+@method_decorator(ownership_decorators, "get")
+@method_decorator(ownership_decorators, "post")
 class AccountUpdateView(UpdateView):
 
     """ Account Update View Definition """
 
     model = User
-    form_class = forms.AccountUpdateForm
+    form_class = AccountUpdateForm
     context_object_name = "target_user"
     success_url = reverse_lazy("account:detail")
     template_name = "accounts/update.html"
 
 
-@method_decorator(ownershtp_decorators, "get")
-@method_decorator(ownershtp_decorators, "post")
+@method_decorator(ownership_decorators, "get")
+@method_decorator(ownership_decorators, "post")
 class AccountDeleteView(DeleteView):
 
     """ Account Delete View Definition """

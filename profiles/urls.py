@@ -8,4 +8,5 @@ app_name = "profiles"
 
 urlpatterns = [
     path("create/", views.ProfileCreateView.as_view(), name="create"),
+    path("update/<int:pk>", views.ProfileUpdateView.as_view(), name="update"),
 ]

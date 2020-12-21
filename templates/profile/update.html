@@ -4,13 +4,13 @@
 {% block content %}
 <div style="text-align: center; max-width: 400px; margin: 4rem auto;">
     <div>
-        <h4>Change Info</h4>
+        <h4>Update Profile</h4>
     </div>
     <div>
-        <form action="{% url 'accounts:update' user.pk %}" method="POST">
+        <form action="{% url 'profiles:update' target_profile.pk %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% bootstrap_form form %}
-            <input type="submit" class="btn btn-dark rounded-pill col-4 mt-3" value="Change" />
+            <input type="submit" class="btn btn-dark rounded-pill col-4 mt-3" value="Update" />
         </form>
     </div>
 </div>

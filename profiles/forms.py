@@ -5,9 +5,22 @@ from django.forms import ModelForm
 from . import models
 
 
-class ProfileCreationForm(ModelForm):
+class ProfileCreateForm(ModelForm):
 
-    """Profile Creation Form Definition """
+    """Profile Create Form Definition """
+
+    class Meta:
+        model = models.Profile
+        fields = [
+            "nickname",
+            "status_message",
+            "image",
+        ]
+
+
+class ProfileUpdateForm(ModelForm):
+
+    """Profile Update Form Definition """
 
     class Meta:
         model = models.Profile
