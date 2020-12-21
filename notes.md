@@ -17,3 +17,23 @@
 ### STATIC_ROOT
 
 - 장고 프로젝트에서 사용되느 모든 정적 파일들을 모으는 경로
+
+### decorator
+
+- 함수의 앞 뒤를 꾸며줌
+
+#### Class decorator
+
+- 일반적인 FBV와 다르게 @method_decorater 먼저 클래스 위에 써줘야함
+- 그 안에 decorator를 넣어주고 decorating 하고자 하는 메서드를 넣어줌
+
+```python
+@method_decorator(login_required, 'get')
+class CBV():
+    """
+    Class Based View CODE Here
+    """
+
+    def get(*args, **kwargs):
+        pass
+```

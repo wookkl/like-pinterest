@@ -8,8 +8,8 @@
     </div>
     <div>
         {% if user == target_user %}
-        <a href="{% url 'accounts:update' user.pk %}">Change Information</a>
-        <a href="{% url 'accounts:delete' user.pk %}">Delete Account</a>
+        <a href="{% url 'accounts:update' target_user.pk %}">Change Information</a>
+        <a href="{% url 'accounts:delete' target_user.pk %}">Delete Account</a>
         {% endif %}
     </div>
 </div>
