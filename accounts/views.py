@@ -15,6 +15,8 @@ from .decorators import account_ownership_required
 ownership_decorators = [login_required, account_ownership_required]
 
 
+@method_decorator(login_required, "get")
+@method_decorator(login_required, "post")
 class AccountCreateView(CreateView):
 
     """ Account Create View Definition """
@@ -35,6 +37,8 @@ class AccountLoginView(LoginView):
     template_name = "accounts/login.html"
 
 
+@method_decorator(login_required, "get")
+@method_decorator(login_required, "post")
 class AccountLogoutView(LogoutView):
 
     """ Account Log out View Definition """
