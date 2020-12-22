@@ -48,6 +48,7 @@ PROJECT_APPS = [
     "profiles.apps.ProfilesConfig",
     "articles.apps.ArticlesConfig",
     "core.apps.CoreConfig",
+    "comments.apps.CommentsConfig",
 ]
 
 THIRD_PARTY_APPS = [

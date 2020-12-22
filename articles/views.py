@@ -7,6 +7,7 @@ from django.views.generic import (
     DeleteView,
     ListView,
 )
+from django.views.generic.edit import FormMixin
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -14,6 +15,7 @@ from django.utils.decorators import method_decorator
 from .models import Article
 from .decorators import article_ownership_required
 from .forms import ArticleCreateForm, ArticleUpdateForm
+from comments.forms import CommentCreateForm
 
 ownership_decorators = [login_required, article_ownership_required]
 
@@ -38,13 +40,15 @@ class ArticleCreateView(CreateView):
         return reverse_lazy("articles:detail", kwargs={"pk": self.object.pk})
 
 
-class ArticleDetailView(DetailView):
+class ArticleDetailView(DetailView, FormMixin):
 
     """ Article Detail View Definition """
 
     model = Article
     template_name = "articles/detail.html"
+
     context_object_name = "target_article"
+    form_class = CommentCreateForm
 
 
 @method_decorator(ownership_decorators, "get")
