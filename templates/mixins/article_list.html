@@ -1,0 +1,24 @@
+{% load static %}
+
+<div style="text-align: center;">
+    {% if article_list %}
+        <div class="container">
+            {% for article in article_list %}
+                <a style="display: block;" href="{% url 'articles:detail' article.pk %}">
+                {% include 'mixins/article.html' with article=article %}
+                </a> 
+            {% endfor %}
+        </div>
+    {% else %}
+        <div>
+            <h1>No Articles yet</h1>
+        </div>
+    {% endif %}
+        
+    {% include 'mixins/pagination.html' with page_obj=page_obj%}
+    
+    <div>
+        <a class="btn btn-dark rounded-pill mt-3 mb-3 "href="{% url 'articles:create' %}">Create Article</a>
+    </div>
+</div> 
+<script src="{% static 'js/magicgrid.js' %}"></script>

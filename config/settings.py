@@ -49,6 +49,7 @@ PROJECT_APPS = [
     "articles.apps.ArticlesConfig",
     "core.apps.CoreConfig",
     "comments.apps.CommentsConfig",
+    "projects.apps.ProjectsConfig",
 ]
 
 THIRD_PARTY_APPS = [
