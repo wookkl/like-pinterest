@@ -1,0 +1,8 @@
+<div class="item{{ forloop.counter }} d-flex flex-column">
+    {% if project.image %}
+        <img class="shadow mb-2" style="width: 8rem; height: 8rem; object-fit: cover;" src="{{ project.image.url }}"/>
+    {% else %}
+        <div class="shadow mb-2" style="width: 8rem; height: 8rem;" ></div>
+    {% endif %}
+    <span class="fs-5">{{ project.title | truncatechars:8 }}</span>
+</div>

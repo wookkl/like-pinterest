@@ -2,20 +2,23 @@
 {% load bootstrap4 %}
 
 {% block content %}
-<div class="d-flex flex-column" style="text-align: center; max-width: 400px; margin: 4rem auto;">
-    <div class="d-flex flex-column align-items-center mb-5">
-        {% if target_user.profile %}
-            <img class="rounded-pill mb-3" style="height: 10rem; width: 10rem;" src="{{ target_user.profile.image.url }}" alt="photo">
-            <div>
-                <span class="fs-3">{{ target_user.profile.nickname }}</span>
-                {% if user == target_user %}
-                    <a href=" {% url 'profiles:update' target_user.profile.pk %}"><i class="fas fa-cog fa-lg"></i></a>
-                {% endif %}
-            </div>
-            <span class="fs-4">{{ target_user.profile.status_message }}</span>
-        {% else %}
-            {% if user == target_user %}<a href=" {% url 'profiles:create' %}">Create profile</a>{% endif %}
-        {% endif %}
+    <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
+        <div class="d-flex flex-column align-items-center mb-5">
+            {% if target_user.profile %}
+                <img class="rounded-pill mb-3" style="height: 10rem; width: 10rem;" src="{{ target_user.profile.image.url }}" alt="photo">
+                <div>
+                    <span class="fs-3">{{ target_user.profile.nickname }}</span>
+                    {% if user == target_user %}
+                        <a href=" {% url 'profiles:update' target_user.profile.pk %}"><i class="fas fa-cog fa-lg"></i></a>
+                    {% endif %}
+                </div>
+                <span class="fs-4">{{ target_user.profile.status_message }}</span>
+            {% else %}
+                {% if user == target_user %}<a href=" {% url 'profiles:create' %}">Create profile</a>{% endif %}
+            {% endif %}
+        </div>
     </div>
-</div>
+    {% if object_list %}
+        {% include 'mixins/article_list.html' with article_list=object_list %}    
+    {% endif %}
 {% endblock content %}

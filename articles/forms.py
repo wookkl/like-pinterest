@@ -13,8 +13,9 @@ class ArticleCreateForm(ModelForm):
         model = Article
         fields = [
             "title",
-            "content",
             "image",
+            "content",
+            "project",
         ]
 
 
@@ -26,6 +27,7 @@ class ArticleUpdateForm(ModelForm):
         model = Article
         fields = [
             "title",
-            "content",
             "image",
+            "content",
+            "project",
         ]

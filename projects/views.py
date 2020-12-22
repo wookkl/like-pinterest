@@ -4,11 +4,13 @@ from django.views.generic import DetailView, CreateView, ListView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.views.generic.list import MultipleObjectMixin
 
 # local Django
 
 from .models import Project
 from .form import ProjectCreateForm
+from articles.models import Article
 
 
 @method_decorator(login_required, "get")
@@ -36,10 +38,18 @@ class ProjectListView(ListView):
     paginate_orphans = 5
 
 
-class ProjectDetailView(DetailView):
+class ProjectDetailView(DetailView, MultipleObjectMixin):
 
     """ Project Detail View """
 
     model = Project
     template_name = "projects/detail.html"
     context_object_name = "target_project"
+    paginate_by = 25
+    paginate_orphans = 5
+
+    def get_context_data(self, **kwargs):
+        object_list = Article.objects.filter(project=self.get_object())
+        return super(ProjectDetailView, self).get_context_data(
+            object_list=object_list, **kwargs
+        )

@@ -6,19 +6,17 @@
         {% if project_list %}
             <div class="container">
                 {% for project in project_list %}
-                    <a style="display: block;" href="{% url 'projects:detail' project.pk %}">
-                    {% include 'mixins/project.html' with project=project %}
+                    <a style="display: block; width: 8rem;" href="{% url 'projects:detail' project.pk %}">
+                    {% include 'mixins/card_project.html' with project=project %}
                     </a> 
                 {% endfor %}
             </div>
+            {% include 'mixins/pagination.html' with page_obj=page_obj%}
         {% else %}
             <div>
                 <h1>No Projects yet</h1>
             </div>
         {% endif %}
-
-        {% include 'mixins/pagination.html' with page_obj=page_obj%}
-
         <div>
             <a class="btn btn-dark rounded-pill mt-3 mb-3 "href="{% url 'projects:create' %}">Create Project</a>
         </div>

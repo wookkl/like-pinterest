@@ -16,16 +16,3 @@ class ProjectCreateForm(ModelForm):
             "description",
             "image",
         ]
-
-
-class ProjectUpdateForm(ModelForm):
-
-    """ Project Update Form Definition """
-
-    class Meta:
-        model = Project
-        fields = [
-            "title",
-            "description",
-            "image",
-        ]

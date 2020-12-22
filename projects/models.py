@@ -12,3 +12,6 @@ class Project(models.Model):
     description = models.CharField(max_length=255)
     image = models.ImageField(null=True, blank=True, upload_to="project/")
     created_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.title}"
