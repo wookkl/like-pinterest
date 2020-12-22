@@ -1,5 +1,5 @@
 # Django
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 
 # local Django
 from .models import Comment
@@ -14,3 +14,7 @@ class CommentCreateForm(ModelForm):
         fields = [
             "content",
         ]
+        widgets = {
+            "content": Textarea(attrs={"placeholder": "comment"}),
+        }
+        labels = {"content": "comment"}

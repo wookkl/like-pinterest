@@ -1,10 +1,12 @@
+{% load bootstrap4 %}
+
 <footer class="footer">
     <div class="footer__btn">
         <span>공지사항</span> |
         <span>제휴문의</span> |
         <span>서비스 소개</span>
     </div>
-    <div style="margin-top: 1rem; ">
-        <h4 class="logo">Winterst</h4>
+    <div class="my-4">
+        <h4 class="logo"><a href="{% url 'core:home' %}">Winterest</a></h4>
     </div>
 </footer>

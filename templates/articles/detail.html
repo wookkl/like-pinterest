@@ -4,26 +4,23 @@
 {% block content %}
 <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
     <div>
-        <h1>{{ target_article.title }}</h1>
-        <h3>{{ target_article.writer.profile.nickname }}</h3>
-        <img src="{{ target_article.image.url }} " style="width: 100%; border-radius: 1rem;"/>
+        <div class="d-flex align-items-center justify-content-center">
+            <h1 class="me-2">{{ target_article.title }}</h1>
+            {% if user == target_article.writer %}
+                <a style="font-size: 0.6rem;"class="btn btn-outline-info rounded-pill me-2" href="{% url 'articles:update' target_article.pk %}">수정</a>
+                <a style="font-size: 0.6rem;"class="btn btn-outline-danger rounded-pill" href="{% url 'articles:delete' target_article.pk %}">삭제</a>
+            {% endif %} 
+        </div>
+        <h4><a href="{% url 'accounts:detail' target_article.writer.pk %}">{{ target_article.writer.profile.nickname }}</a></h4>
+        <img src="{{ target_article.image.url }} " style="width: 100%; border-radius: 1rem; margin-bottom: 1rem;"/>
         <p style="font-size: 1.5rem;">
             {{ target_article.content}}
         </p>
-        {% if user == target_article.writer %}
-            <div>
-                <a href="{% url 'articles:update' target_article.pk %}" class="btn col-3 rounded-pill btn-primary mb-3">Update Article</a>
-            </div>
-            <div>
-                <a href="{% url 'articles:delete' target_article.pk %}" class="btn col-3 rounded-pill btn-danger">Delete Article</a>
-            </div>
-        {% endif %}
         <hr> 
-        
+        <h3>Comments</h3>
         {% for comment in target_article.comments.all %}
             {% include 'comments/detail.html' with comment=comment %}
         {% endfor %}
-                        
         {% include 'comments/create.html' with article=target_article %}
     </div>
 </div>

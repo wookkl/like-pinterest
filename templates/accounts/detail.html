@@ -2,25 +2,19 @@
 {% load bootstrap4 %}
 
 {% block content %}
-<div style="text-align: center; max-width: 400px; margin: 4rem auto;">
-    <div>
+<div class="d-flex flex-column" style="text-align: center; max-width: 400px; margin: 4rem auto;">
+    <div class="d-flex flex-column align-items-center mb-5">
         {% if target_user.profile %}
-            <img class="rounded-pill" style="height: 10rem; width: 10rem;" src="{{ target_user.profile.image.url }}" alt="photo">
-            {{ target_user.profile.nickname }}
-            {{ target_user.profile.status_message }}
-            {% if user == target_user and user.is_authenticated %}
-                <a href=" {% url 'profiles:update' target_user.profile.pk %}">Update profile</a>
-            {% endif %}
+            <img class="rounded-pill mb-3" style="height: 10rem; width: 10rem;" src="{{ target_user.profile.image.url }}" alt="photo">
+            <div>
+                <span class="fs-3">{{ target_user.profile.nickname }}</span>
+                {% if user == target_user %}
+                    <a href=" {% url 'profiles:update' target_user.profile.pk %}"><i class="fas fa-cog fa-lg"></i></a>
+                {% endif %}
+            </div>
+            <span class="fs-4">{{ target_user.profile.status_message }}</span>
         {% else %}
-            {% if user == target_user %}
-                <a href=" {% url 'profiles:create' %}">Create profile</a>
-            {% endif %}
-        {% endif %}
-    </div>
-    <div>
-        {% if user == target_user %}
-            <a href="{% url 'accounts:update' target_user.pk %}">Change Information</a></br>
-            <a href="{% url 'accounts:delete' target_user.pk %}">Delete Account</a>
+            {% if user == target_user %}<a href=" {% url 'profiles:create' %}">Create profile</a>{% endif %}
         {% endif %}
     </div>
 </div>
