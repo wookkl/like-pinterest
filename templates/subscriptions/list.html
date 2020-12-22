@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+    <div style="text-align: center; ">
+        {% if article_list %}
+            <div class="container">
+                {% for article in article_list %}
+                    <a style="display: block;" href="{% url 'articles:detail' article.pk %}">
+                    {% include 'mixins/card_article.html' with article=article %}
+                    </a> 
+                {% endfor %}
+            </div>
+            {% include 'mixins/pagination.html' with page_obj=page_obj%}
+        {% else %}
+            <div>
+                <h1>No articles yet</h1>
+            </div>
+        {% endif %}
+    </div>
+    <script src="{% static 'js/magicgrid.js' %}"></script>
+{% endblock content %}

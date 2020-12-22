@@ -48,6 +48,8 @@ class CBV():
 
 ### Redirect View
 
+- 주어진 url로 redirect 시키는 뷰
+
 ### unique_together
 
 - 두개의 필드의 조합을 가지는 객체가 오직 하나만 존재할 수 있도록 메타 클래스에 정의
@@ -55,4 +57,15 @@ class CBV():
 ```python
 class Meta:
         unique_together = ("field1", "field2")
+```
+
+### values_list
+
+- key, value의 형태가 아닌 tuple 형태로 가져올 수 있음
+
+```python
+# Subsription 객체들중  user가 self.request.user인 객체들의 project필드만 tuple형태로 가져옴
+projects = Subscription.objects.filter(user=self.request.user).values_list(
+            "project"
+)
 ```

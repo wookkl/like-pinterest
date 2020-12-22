@@ -6,6 +6,7 @@
         <a href="{% url 'core:home' %}"><span>Articles</span></a>
         <a href="{% url 'projects:list' %}"><span>Projects</span></a>
         {% if user.is_authenticated %}
+            <a href="{% url 'subscriptions:list' user.pk %}"><span>Subscriptions</span></a>
             <a href="{% url 'accounts:detail' user.pk %}"><span>My page</span></a>
             <a href="{% url 'accounts:logout' %}?next={{ request.path }}"><span>Log out</span></a>
         {% else %}
