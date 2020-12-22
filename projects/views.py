@@ -11,6 +11,7 @@ from django.views.generic.list import MultipleObjectMixin
 from .models import Project
 from .form import ProjectCreateForm
 from articles.models import Article
+from subscriptions.models import Subscription
 
 
 @method_decorator(login_required, "get")
@@ -50,6 +51,11 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
 
     def get_context_data(self, **kwargs):
         object_list = Article.objects.filter(project=self.get_object())
+        project = self.object
+        user = self.request.user
+        if user.is_authenticated:
+            subscription = Subscription.objects.filter(project=project, user=user)
+
         return super(ProjectDetailView, self).get_context_data(
-            object_list=object_list, **kwargs
+            object_list=object_list, subscription=subscription, **kwargs
         )

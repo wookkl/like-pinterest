@@ -50,6 +50,7 @@ PROJECT_APPS = [
     "core.apps.CoreConfig",
     "comments.apps.CommentsConfig",
     "projects.apps.ProjectsConfig",
+    "subscriptions.apps.SubscriptionsConfig",
 ]
 
 THIRD_PARTY_APPS = [

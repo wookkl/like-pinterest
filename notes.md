@@ -45,3 +45,14 @@ class CBV():
 ```html
 <form action="" method="POST" enctype="multipart/form-data"></form>
 ```
+
+### Redirect View
+
+### unique_together
+
+- 두개의 필드의 조합을 가지는 객체가 오직 하나만 존재할 수 있도록 메타 클래스에 정의
+
+```python
+class Meta:
+        unique_together = ("field1", "field2")
+```
