@@ -8,10 +8,10 @@ from articles.models import Article
 
 class Comment(models.Model):
     article = models.ForeignKey(
-        Article, on_delete=models.CASCADE, related_name="comment", null=True
+        Article, on_delete=models.CASCADE, related_name="comments", null=True
     )
     writer = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="comment", null=True
+        User, on_delete=models.CASCADE, related_name="comments", null=True
     )
     content = models.TextField()
     created_at = models.DateField(auto_now_add=True)

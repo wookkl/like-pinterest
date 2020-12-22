@@ -7,7 +7,7 @@
         <h1>{{ target_article.title }}</h1>
         <h3>{{ target_article.writer.profile.nickname }}</h3>
         <img src="{{ target_article.image.url }} " style="width: 100%; border-radius: 1rem;"/>
-        <p>
+        <p style="font-size: 1.5rem;">
             {{ target_article.content}}
         </p>
         {% if user == target_article.writer %}
@@ -18,7 +18,12 @@
                 <a href="{% url 'articles:delete' target_article.pk %}" class="btn col-3 rounded-pill btn-danger">Delete Article</a>
             </div>
         {% endif %}
-        <hr>
+        <hr> 
+        
+        {% for comment in target_article.comments.all %}
+            {% include 'comments/detail.html' with comment=comment %}
+        {% endfor %}
+                        
         {% include 'comments/create.html' with article=target_article %}
     </div>
 </div>
