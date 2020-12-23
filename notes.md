@@ -69,3 +69,10 @@ projects = Subscription.objects.filter(user=self.request.user).values_list(
             "project"
 )
 ```
+
+### WYSIWYG
+
+- What you See Is What You Get 너가 보는대로 글이 써진다
+- 게시판 기능중 하나
+- 게시판의 폰트 크기나 형태들을 자유롭게 할 수 있는 기능
+- medium-editor라는 오픈 소스로 사용할 수 있음

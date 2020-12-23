@@ -2,7 +2,7 @@
 {% load bootstrap4 %}
 
 {% block content %}
-<div style="text-align: center; max-width: 700px; margin: 4rem auto;">
+<div style="max-width: 700px; margin: 4rem auto;">
     <div>
         <div class="d-flex align-items-center justify-content-center">
             <h1 class="me-2">{{ target_article.title }}</h1>
@@ -11,13 +11,13 @@
                 <a style="font-size: 0.6rem;"class="btn btn-outline-danger rounded-pill" href="{% url 'articles:delete' target_article.pk %}">삭제</a>
             {% endif %} 
         </div>
-        <h4><a href="{% url 'accounts:detail' target_article.writer.pk %}">{{ target_article.writer.profile.nickname }}</a></h4>
+        <h4 class="text-center"><a href="{% url 'accounts:detail' target_article.writer.pk %}">{{ target_article.writer.profile.nickname }}</a></h4>
         <img src="{{ target_article.image.url }} " style="width: 100%; border-radius: 1rem; margin-bottom: 1rem;"/>
         <p style="font-size: 1.5rem;">
-            {{ target_article.content}}
+            {{ target_article.content|safe}}
         </p>
         <hr> 
-        <h3>Comments</h3>
+        <h3 class="text-center">Comments</h3>
         {% for comment in target_article.comments.all %}
             {% include 'comments/detail.html' with comment=comment %}
         {% endfor %}
