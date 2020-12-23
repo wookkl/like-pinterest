@@ -126,3 +126,15 @@ projects = Subscription.objects.filter(user=self.request.user).values_list(
 ### Gunicorn이란?
 
 - Nginx와 Django를 연결시켜주는 interface
+
+### Docker Network
+
+- 하나의 네트워크로 컨테이너들을 묶어줌
+- container name이 네트워크 안에의 도메인이 되는 것임
+
+### Docker Volume
+
+- 다른 컨테이너간의 데이터를 공유할 수 있는 기능
+
+1. Bind Volume: host서버 안의 파일들을 컨테이너에 동기화 시키는 것
+2. Named Volume: 도커안에서 이름이 달려있는 새로운 볼륨을 만들어줌. 컨테이너들이랑 붙여서 동기화
