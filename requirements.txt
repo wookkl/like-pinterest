@@ -1,0 +1,21 @@
+################################################################################
+# This requirements file has been automatically generated from `Pipfile` with
+# `pipenv-to-requirements`
+#
+#
+# This has been done to maintain backward compatibility with tools and services
+# that do not support `Pipfile` yet.
+#
+# Do NOT edit it directly, use `pipenv install [-d]` to modify `Pipfile` and
+# `Pipfile.lock` and then regenerate `requirements*.txt`.
+################################################################################
+
+asgiref==3.3.1 ; python_version >= '3.5'
+beautifulsoup4==4.9.3
+django-bootstrap4==2.3.1
+django-dotenv==1.4.2
+django==3.1.4
+pillow==8.0.1
+pytz==2020.4
+soupsieve==2.1 ; python_version >= '3.0'
+sqlparse==0.4.1 ; python_version >= '3.5'
