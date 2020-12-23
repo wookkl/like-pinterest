@@ -76,3 +76,32 @@ projects = Subscription.objects.filter(user=self.request.user).values_list(
 - 게시판 기능중 하나
 - 게시판의 폰트 크기나 형태들을 자유롭게 할 수 있는 기능
 - medium-editor라는 오픈 소스로 사용할 수 있음
+
+# 배포 단계
+
+- VULTR라는 가상 서버를 빌려서 서비스 배포할 것임
+
+### 도커 사용하는 이유?
+
+- docker는 꼭 필요한 시스템 사용되는 이유는 빠르고 어디서나 같은 환경으로 사용가능
+- 규격화되고 표준화된 컨테이너. 같은 환경!
+- 이미지형태로 환경등을 구축해 놓으면 재사용이 가능함
+
+### VPS란?
+
+- Virtual Private Server(가상 사설 서버) Ex) aws, azure, VULTR
+
+### docker hub?
+
+- 전세게에서 모든 도커 이미지들을 업로드하고 가져올 수 있는 플랫폼
+
+### portainer.io
+
+- docker을 gui방식으로 바꿔줌
+
+### django container 이미지를 올리기 위해서는?
+
+1. Upload Source to Github
+2. Write Dockerfile
+3. Build Image
+4. Run Container
