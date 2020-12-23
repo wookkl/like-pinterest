@@ -26,7 +26,7 @@ class AccountCreateView(CreateView):
     template_name = "accounts/create.html"
 
     def get_success_url(self):
-        pk = self.object.user.pk
+        pk = self.object.pk
         return reverse_lazy("accounts:detail", kwargs={"pk": pk})
 
 

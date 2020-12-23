@@ -13,6 +13,7 @@ django = "*"
 django-dotenv = "*"
 django-bootstrap4 = "*"
 pillow = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"

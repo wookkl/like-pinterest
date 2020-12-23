@@ -105,3 +105,24 @@ projects = Subscription.objects.filter(user=self.request.user).values_list(
 2. Write Dockerfile
 3. Build Image
 4. Run Container
+
+### Dockerfile의 commands
+
+- BASE : 기본이 되는 이미지를 고르는 작업
+- RUN : COMMAND를 실행 시켜줌 pip list.. , git clone.. 이런 명령어들
+- WORKDIR : cd랑 비슷,
+- EXPOSE : 포트들이 존재하는데 장고 컨테이너에서의 포트를 사용할 수 있도록 EXPOSE해준다는 느낌, VULTR의 포트와 연결..
+- CMD: 기본 커맨드를 설정 해놓는 것 항상 실행할때 사용해야하는 커맨드를 적어두는 것 ex python manage.py runserver...
+
+### pip install -r requirements.txt
+
+- requirements.txt안에 있는 패키지들을 모두 설치하겠다!
+
+### Django container로써의 문제점
+
+- `python managet.py runserver` 는 배포용이 아니라 개발용임
+- 이런 문제점을 없애기 위해 Gunicorn이라는 라이브러리를 설치해줌 django안에,
+
+### Gunicorn이란?
+
+- Nginx와 Django를 연결시켜주는 interface
