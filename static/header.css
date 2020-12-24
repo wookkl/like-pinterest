@@ -1,5 +1,10 @@
 /* Header */
 .header {
     text-align: center;
-    margin: 4rem 0 0; 
+    margin: 2rem 0 0; 
+}
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 0 2rem 0;
 }

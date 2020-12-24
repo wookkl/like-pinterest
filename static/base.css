@@ -2,9 +2,6 @@
 @import "header.css";
 @import "home.css";
 /* Base */
-.logo {
-    font-family: 'Montserrat', sans-serif;
-}
 a {
     text-decoration: none;
     color: black;
@@ -15,5 +12,20 @@ a:hover {
 @media screen and (max-width:500px) {
     html {
         font-size: 13px;
+    }
+    nav {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    nav {
+        width: 85%;
+    }
+}
+
+@media screen and (min-width:1200px) {
+    nav {
+        width: 30%;
     }
 }
