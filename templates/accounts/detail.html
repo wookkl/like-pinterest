@@ -7,7 +7,7 @@
             {% if target_user.profile %}
                 
                 {% if target_user.profile.image %}
-                    <img class="rounded-pill mb-3" style="height: 10rem; width: 10rem;" src="{{ target_user.profile.image.url }}" alt="photo">
+                    <img class="rounded-pill mb-3" style="height: 10rem; width: 10rem; object-fit: cover;" src="{{ target_user.profile.image.url }}" alt="photo">
                 {% endif %}
                 <div>
                     <span class="fs-3">{{ target_user.profile.nickname }}</span>

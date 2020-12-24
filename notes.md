@@ -138,3 +138,20 @@ projects = Subscription.objects.filter(user=self.request.user).values_list(
 
 1. Bind Volume: host서버 안의 파일들을 컨테이너에 동기화 시키는 것
 2. Named Volume: 도커안에서 이름이 달려있는 새로운 볼륨을 만들어줌. 컨테이너들이랑 붙여서 동기화
+
+### Container의 문제점 및 한계
+
+1. 설정을 반복적으로 해줘야함. 배포 할 때 마다 이러한 문제를 해결하기위해 도커 Stack이 존재
+2. 컨테이너가 다운되었을때.. 누가 다시 리부트해줄 수 없음 -> 서비스로 격상할 수 있음서비스화 시킨다면 자동 리부트가 가능함. 스케일 아웃 가능
+
+- 이 모든 해결방안을 Total setting stack에 적어놓음 yml file
+
+### Docker Swarm
+
+- 여러가지 서버(칸테이너)를 하나의 서비스처럼 묶어주는 것, 클러스터링
+- 소위 말해서 Container Orchestration이라고 부름 Ex) Kubernetes, Swarm, Apache mesos
+- 굳이 스웜을 사용하는 이유는 쉬움, 핵심적인 부분만!
+
+### Docker Secret
+
+- 암호화가 필요한 환경변수들을 도커가 관리하여 필요한 컨테이너가 있을 때 사용할 수 있음
