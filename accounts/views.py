@@ -1,5 +1,6 @@
 # Django
 from django.urls import reverse_lazy
+from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserCreationForm
@@ -7,7 +8,6 @@ from django.views.generic.list import MultipleObjectMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
-
 
 # local Django
 from .forms import AccountUpdateForm
@@ -24,6 +24,11 @@ class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
     template_name = "accounts/create.html"
+
+    def form_valid(self, form):
+        valid = super().form_valid(form)
+        login(self.request, self.object)
+        return valid
 
     def get_success_url(self):
         pk = self.object.pk
