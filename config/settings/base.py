@@ -132,3 +132,5 @@ MEDIA_URL = "/media/"
 
 LOGOUT_REDIRECT_URL = reverse_lazy("accounts:login")
 LOGIN_REDIRECT_URL = reverse_lazy("core:home")
+
+ADMIN_THUMBNAIL_STYLE = {"width": "5rem"}

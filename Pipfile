@@ -15,6 +15,7 @@ django-bootstrap4 = "*"
 pillow = "*"
 gunicorn = "*"
 requests = "*"
+django-admin-thumbnails = "*"
 
 [requires]
 python_version = "3.8"
