@@ -41,6 +41,63 @@ class AccountCreateView(CreateView):
         return reverse_lazy("accounts:detail", kwargs={"pk": pk})
 
 
+class KakaoException(Exception):
+    pass
+
+
+def login_kakao(request):
+
+    redirect_uri = "http://127.0.0.1:8000/accounts/login/kakao/callback"
+    rest_api_key = os.environ.get("KAKAO_REST_API_KEY")
+
+    return redirect(
+        f"https://kauth.kakao.com/oauth/authorize?client_id={rest_api_key}&redirect_uri={redirect_uri}&response_type=code"
+    )
+
+
+def kakao_callback(request):
+    try:
+        code = request.GET.get("code", None)
+        if code is not None:
+            client_id = os.environ.get("KAKAO_REST_API_KEY")
+            redirect_uri = "http://127.0.0.1:8000/accounts/login/kakao/callback"
+
+            access_token = (
+                requests.post(
+                    f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={client_id}&redirect_uri={redirect_uri}&code={code}",
+                    headers={"Content-Type": "application/json;charset=UTF-8"},
+                )
+                .json()
+                .get("access_token", None)
+            )
+            if access_token is not None:
+                user_profile = requests.post(
+                    f"https://kapi.kakao.com/v2/user/me",
+                    headers={
+                        "Authorization": f"Bearer {access_token}",
+                        "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+                    },
+                ).json()
+                email = user_profile.get("kakao_account").get("email", None)
+                if email is not None:
+                    try:
+                        user = User.objects.get(username=email, email=email)
+                    except User.DoesNotExist:
+                        user = User.objects.create(username=email, email=email)
+                        user.set_unusable_password()
+                        user.save()
+                    login(request, user)
+                    return redirect(reverse("core:home"))
+                else:
+                    raise KakaoException("Can't get user's email")
+            else:
+                raise KakaoException("Can't get token")
+        else:
+            raise KakaoException("Can't get code")
+    except KakaoException as e:
+        return redirect(reverse("accounts:login"))
+
+
 class GithubException(Exception):
     pass
 
@@ -73,12 +130,12 @@ def github_callback(request):
                     "https://api.github.com/user",
                     headers={"Authorization": f"token {access_token}"},
                 ).json()
-                username = user_json.get("login", None)
-                if username is not None:
+                email = user_json.get("email", None)
+                if email is not None:
                     try:
-                        user = User.objects.get(username=username)
+                        user = User.objects.get(username=email, email=email)
                     except User.DoesNotExist:
-                        user = User.objects.create(username=username)
+                        user = User.objects.create(username=email, email=email)
                         user.set_unusable_password()
                         user.save()
                     login(request, user)

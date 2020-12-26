@@ -15,4 +15,6 @@ urlpatterns = [
     path("delete/<int:pk>/", views.AccountDeleteView.as_view(), name="delete"),
     path("login/github/", views.login_github, name="github-login"),
     path("login/github/callback", views.github_callback, name="github-callback"),
+    path("login/kakao/", views.login_kakao, name="kakao-login"),
+    path("login/kakao/callback", views.kakao_callback, name="kakao-callback"),
 ]

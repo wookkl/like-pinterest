@@ -13,7 +13,7 @@
             <input type="submit" class="btn btn-dark rounded-pill col-4 my-3" value="Log In" />
         </form>
         <div>or</div>
-        <a class="btn rounded-pill d-block col-4 mx-auto my-3" style="background-color: #f6d600; color:black" href="#">Kakao Login</a>
+        <a class="btn rounded-pill d-block col-4 mx-auto my-3" style="background-color: #f6d600; color:black" href="{% url 'accounts:kakao-login' %}">Kakao Login</a>
         <a class="btn rounded-pill d-block col-4 mx-auto" style="background-color: #24282d; color:white" href="{% url 'accounts:github-login' %}">Github Login</a>
     </div>
 </div>

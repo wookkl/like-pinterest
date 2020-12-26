@@ -6,8 +6,10 @@
 <body style="font-family: 'Nanum Gothic Coding', monospace;">
     {% include 'partials/header.html' %}
     <hr>
-    {% block content %}
-    {% endblock content %}
+    <div style="min-height: 65vh;">
+        {% block content %}
+        {% endblock content %}
+    </div>
     <hr>
     {% include 'partials/footer.html' %}
     <script src="https://kit.fontawesome.com/9d1ca604ee.js" crossorigin="anonymous"></script>
