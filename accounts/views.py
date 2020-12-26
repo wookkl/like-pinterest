@@ -1,6 +1,12 @@
+# Python
+import os
+import requests
+
 # Django
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseBadRequest
 from django.contrib.auth import login
+from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserCreationForm
@@ -33,6 +39,59 @@ class AccountCreateView(CreateView):
     def get_success_url(self):
         pk = self.object.pk
         return reverse_lazy("accounts:detail", kwargs={"pk": pk})
+
+
+class GithubException(Exception):
+    pass
+
+
+def login_github(request):
+    client_id = os.environ.get("GH_CLIENT_ID")
+    scope = "user:email"
+    redirect_uri = "http://127.0.0.1:8000/accounts/login/github/callback"
+    return redirect(
+        f"https://github.com/login/oauth/authorize?client_id={client_id}&scope={scope}&redirect_uri={redirect_uri}"
+    )
+
+
+def github_callback(request):
+    try:
+        code = request.GET.get("code", None)
+        if code is not None:
+            client_id = os.environ.get("GH_CLIENT_ID")
+            client_secret = os.environ.get("GH_CLIENT_SECRET")
+            access_token = (
+                requests.post(
+                    f"https://github.com/login/oauth/access_token?client_id={client_id}&client_secret={client_secret}&code={code}",
+                    headers={"Accept": "application/json"},
+                )
+                .json()
+                .get("access_token", None)
+            )
+            if access_token is not None:
+                user_json = requests.get(
+                    "https://api.github.com/user",
+                    headers={"Authorization": f"token {access_token}"},
+                ).json()
+                username = user_json.get("login", None)
+                if username is not None:
+                    try:
+                        user = User.objects.get(username=username)
+                    except User.DoesNotExist:
+                        user = User.objects.create(username=username)
+                        user.set_unusable_password()
+                        user.save()
+                    login(request, user)
+                    return redirect(reverse("core:home"))
+                else:
+                    raise GithubException("Cant' get user's info")
+            else:
+                raise GithubException("Can't get token")
+        else:
+            raise GithubException("Can't get code")
+    except GithubException as e:
+        # Send message
+        return redirect(reverse("accounts:login"))
 
 
 class AccountLoginView(LoginView):

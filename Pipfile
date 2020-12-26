@@ -14,6 +14,7 @@ django-dotenv = "*"
 django-bootstrap4 = "*"
 pillow = "*"
 gunicorn = "*"
+requests = "*"
 
 [requires]
 python_version = "3.8"

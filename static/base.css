@@ -1,7 +1,9 @@
-@import "footer.css";
-@import "header.css";
+@import "partials/footer.css";
+@import "partials/header.css";
 @import "home.css";
+
 /* Base */
+
 a {
     text-decoration: none;
     color: black;
@@ -9,6 +11,7 @@ a {
 a:hover {
     color:black;
 }
+
 @media screen and (max-width:500px) {
     html {
         font-size: 13px;
