@@ -1,10 +1,11 @@
 # Python
 import os
 import requests
+import random
 
 # Django
 from django.urls import reverse_lazy, reverse
-from django.http import HttpResponseBadRequest
+from django.contrib import messages
 from django.contrib.auth import login
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
@@ -13,26 +14,37 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.list import MultipleObjectMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 # local Django
 from .forms import AccountUpdateForm
 from .decorators import account_ownership_required
 from articles.models import Article
+from profiles.models import Profile
 
 ownership_decorators = [login_required, account_ownership_required]
 
 
-class AccountCreateView(CreateView):
+def get_random_nickname():
+    random_number = random.randint(100000, 1000000)
+    return "#USER" + str(random_number)
+
+
+class AccountCreateView(SuccessMessageMixin, CreateView):
 
     """ Account Create View Definition """
 
     model = User
     form_class = UserCreationForm
     template_name = "accounts/create.html"
+    success_message = "Created successfully"
 
     def form_valid(self, form):
         valid = super().form_valid(form)
+        nickname = get_random_nickname()
+        user_profile = Profile.objects.create(user=self.object, nickname=nickname)
+        user_profile.save()
         login(self.request, self.object)
         return valid
 
@@ -72,7 +84,7 @@ def kakao_callback(request):
             )
             if access_token is not None:
                 user_profile = requests.post(
-                    f"https://kapi.kakao.com/v2/user/me",
+                    "https://kapi.kakao.com/v2/user/me",
                     headers={
                         "Authorization": f"Bearer {access_token}",
                         "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
@@ -86,15 +98,23 @@ def kakao_callback(request):
                         user = User.objects.create(username=email, email=email)
                         user.set_unusable_password()
                         user.save()
+                        nickname = get_random_nickname()
+                        user_profile = Profile.objects.create(
+                            user=user, nickname=nickname
+                        )
+                        user_profile.save()
                     login(request, user)
-                    return redirect(reverse("core:home"))
+                    messages.info(request, "Welcome")
+                    return redirect(reverse("accounts:detail", kwargs={"pk": user.pk}))
                 else:
-                    raise KakaoException("Can't get user's email")
+                    raise KakaoException("user's info")
             else:
-                raise KakaoException("Can't get token")
+                raise KakaoException("token")
         else:
-            raise KakaoException("Can't get code")
+            raise KakaoException("code")
     except KakaoException as e:
+        err = "Can't get " + e
+        messages.error(request, err)
         return redirect(reverse("accounts:login"))
 
 
@@ -137,34 +157,49 @@ def github_callback(request):
                     except User.DoesNotExist:
                         user = User.objects.create(username=email, email=email)
                         user.set_unusable_password()
+                        nickname = get_random_nickname()
+                        user_profile = Profile.objects.create(
+                            user=user, nickname=nickname
+                        )
+                        user_profile.save()
                         user.save()
                     login(request, user)
+                    messages.info(request, "Welcome")
                     return redirect(reverse("core:home"))
                 else:
-                    raise GithubException("Cant' get user's info")
+                    raise GithubException("user's info")
             else:
-                raise GithubException("Can't get token")
+                raise GithubException("token")
         else:
-            raise GithubException("Can't get code")
+            raise GithubException("code")
     except GithubException as e:
-        # Send message
+        err = "Can't get " + e
+        messages.error(request, err)
         return redirect(reverse("accounts:login"))
 
 
-class AccountLoginView(LoginView):
+class AccountLoginView(SuccessMessageMixin, LoginView):
 
     """ Account Log in View Definition """
 
     template_name = "accounts/login.html"
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.info(self.request, "Welcome")
+        return response
+
 
 @method_decorator(login_required, "get")
 @method_decorator(login_required, "post")
-class AccountLogoutView(LogoutView):
+class AccountLogoutView(SuccessMessageMixin, LogoutView):
 
     """ Account Log out View Definition """
 
-    pass
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.info(self.request, "Welcome")
+        return response
 
 
 class AccountDetailView(DetailView, MultipleObjectMixin):
@@ -186,7 +221,7 @@ class AccountDetailView(DetailView, MultipleObjectMixin):
 
 @method_decorator(ownership_decorators, "get")
 @method_decorator(ownership_decorators, "post")
-class AccountUpdateView(UpdateView):
+class AccountUpdateView(SuccessMessageMixin, UpdateView):
 
     """ Account Update View Definition """
 
@@ -194,15 +229,16 @@ class AccountUpdateView(UpdateView):
     form_class = AccountUpdateForm
     context_object_name = "target_user"
     template_name = "accounts/update.html"
+    success_message = "Updated successfully"
 
     def get_success_url(self):
-        pk = self.object.user.pk
+        pk = self.object.pk
         return reverse_lazy("accounts:detail", kwargs={"pk": pk})
 
 
 @method_decorator(ownership_decorators, "get")
 @method_decorator(ownership_decorators, "post")
-class AccountDeleteView(DeleteView):
+class AccountDeleteView(SuccessMessageMixin, DeleteView):
 
     """ Account Delete View Definition """
 
@@ -210,3 +246,4 @@ class AccountDeleteView(DeleteView):
     context_object_name = "target_user"
     success_url = reverse_lazy("accounts:login")
     template_name = "accounts/delete.html"
+    success_message = "Deleted successfully"

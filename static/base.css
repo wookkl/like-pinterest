@@ -1,6 +1,10 @@
+@import "mixins/message.css";
+
 @import "partials/footer.css";
 @import "partials/header.css";
+
 @import "home.css";
+
 
 /* Base */
 

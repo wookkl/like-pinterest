@@ -1,0 +1,43 @@
+.messages {
+    position: absolute;
+    top:-4rem;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    animation: messageKeyFrame 3s ease-in-out;
+}
+
+.messages span {
+    padding: 0.5rem 1rem;
+}
+
+.info {
+    background-color: #559af3;
+    
+}
+
+.success {
+    background-color: mediumaquamarine;
+}
+
+.error {
+    background-color: tomato;
+}
+
+@keyframes messageKeyFrame {
+    0% {
+        top: -4rem;
+    }
+    20% {
+        top:0.4rem;
+    }
+    80% {
+        top:0.4rem;
+    }
+    100% {
+        top: -4rem;
+        visibility: hidden; 
+    }
+  }

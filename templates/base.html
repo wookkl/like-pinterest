@@ -1,9 +1,20 @@
+{% load bootstrap4 %}
+
 <!DOCTYPE html>
 <html lang="ko">
 
 {% include 'head.html' %}
 
 <body style="font-family: 'Nanum Gothic Coding', monospace;">
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                {% if message.tags %}
+                    <span class="{{ message.tags }} rounded-pill col-1">{{ message.message }}</span>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
     {% include 'partials/header.html' %}
     <hr>
     <div style="min-height: 65vh;">
