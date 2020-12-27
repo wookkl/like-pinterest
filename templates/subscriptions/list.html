@@ -12,10 +12,6 @@
                 {% endfor %}
             </div>
             {% include 'mixins/pagination.html' with page_obj=page_obj%}
-        {% else %}
-            <div>
-                <h1>No articles yet</h1>
-            </div>
         {% endif %}
     </div>
     <script src="{% static 'js/magicgrid.js' %}"></script>

@@ -14,7 +14,9 @@
         </form>
     </div>
     <div class="d-flex flex-column my-3 ">
-        <a class="btn btn-outline-info  rounded-pill mb-3" href="{% url 'accounts:update' target_profile.user.pk %}">Change Password</a>
+        {% if user.has_usable_password %}
+            <a class="btn btn-outline-info  rounded-pill mb-3" href="{% url 'accounts:update' target_profile.user.pk %}">Change Password</a>
+        {% endif %}
         <a class="btn btn-outline-danger rounded-pill" href="{% url 'accounts:delete' target_profile.user.pk %}">Delete Account</a>
     </div>
 </div>

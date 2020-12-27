@@ -19,11 +19,16 @@ from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 # local Django
 from .forms import AccountUpdateForm
-from .decorators import account_ownership_required
+from .decorators import account_ownership_required, unusable_password_required
 from articles.models import Article
 from profiles.models import Profile
 
 ownership_decorators = [login_required, account_ownership_required]
+update_password_decorator = [
+    login_required,
+    account_ownership_required,
+    unusable_password_required,
+]
 
 
 def get_random_nickname():
@@ -218,8 +223,8 @@ class AccountDetailView(DetailView, MultipleObjectMixin):
         )
 
 
-@method_decorator(ownership_decorators, "get")
-@method_decorator(ownership_decorators, "post")
+@method_decorator(update_password_decorator, "get")
+@method_decorator(update_password_decorator, "post")
 class AccountUpdateView(SuccessMessageMixin, UpdateView):
 
     """ Account Update View Definition """
