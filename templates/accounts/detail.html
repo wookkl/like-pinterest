@@ -8,6 +8,10 @@
                 
                 {% if target_user.profile.image %}
                     <img class="rounded-pill mb-3" style="height: 10rem; width: 10rem; object-fit: cover;" src="{{ target_user.profile.image.url }}" alt="photo">
+                    {% else %}
+                    <div class="rounded-pill mb-3 bg-secondary d-flex justify-content-center align-items-center fs-1" style="color: white; height: 10rem; width: 10rem; ">
+                        <i class="far fa-user fa-lg"></i>
+                    </div>
                 {% endif %}
                 <div>
                     <span class="fs-3">{{ target_user.profile.nickname }}</span>

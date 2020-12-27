@@ -1,17 +1,20 @@
+/* Mixins */
 @import "mixins/message.css";
+@import "mixins/magicgrid.css";
+
+/* Partialss */
 
 @import "partials/footer.css";
 @import "partials/header.css";
 
-@import "home.css";
 
 
-/* Base */
 
 a {
     text-decoration: none;
     color: black;
 }
+
 a:hover {
     color:black;
 }
