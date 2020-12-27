@@ -17,7 +17,9 @@
     background-color: #559af3;
     
 }
-
+.warning {
+    background-color:orangered;
+}
 .success {
     background-color: mediumaquamarine;
 }

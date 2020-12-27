@@ -61,7 +61,6 @@ def login_kakao(request):
 
     redirect_uri = "http://127.0.0.1:8000/accounts/login/kakao/callback"
     rest_api_key = os.environ.get("KAKAO_REST_API_KEY")
-
     return redirect(
         f"https://kauth.kakao.com/oauth/authorize?client_id={rest_api_key}&redirect_uri={redirect_uri}&response_type=code"
     )
@@ -105,7 +104,7 @@ def kakao_callback(request):
                         user_profile.save()
                     login(request, user)
                     messages.info(request, "Welcome")
-                    return redirect(reverse("accounts:detail", kwargs={"pk": user.pk}))
+                    return redirect(reverse("core:home"))
                 else:
                     raise KakaoException("user's info")
             else:
@@ -113,7 +112,7 @@ def kakao_callback(request):
         else:
             raise KakaoException("code")
     except KakaoException as e:
-        err = "Can't get " + e
+        err = "Can't get " + str(e)
         messages.error(request, err)
         return redirect(reverse("accounts:login"))
 
@@ -173,7 +172,7 @@ def github_callback(request):
         else:
             raise GithubException("code")
     except GithubException as e:
-        err = "Can't get " + e
+        err = "Can't get " + str(e)
         messages.error(request, err)
         return redirect(reverse("accounts:login"))
 

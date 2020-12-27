@@ -1,10 +1,9 @@
 # Django
-from django.shortcuts import render
-from django.views.generic import DetailView, CreateView, ListView
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic.list import MultipleObjectMixin
+from django.contrib.auth.decorators import login_required
+from django.views.generic import DetailView, CreateView, ListView
 
 # local Django
 

@@ -1,4 +1,5 @@
 # Django
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView,
@@ -7,9 +8,10 @@ from django.views.generic import (
     DeleteView,
     ListView,
 )
+from django.utils.decorators import method_decorator
 from django.views.generic.edit import FormMixin
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+from django.contrib.messages.views import SuccessMessageMixin
 
 # local Django
 from .models import Article
@@ -22,13 +24,14 @@ ownership_decorators = [login_required, article_ownership_required]
 
 @method_decorator(login_required, "get")
 @method_decorator(login_required, "post")
-class ArticleCreateView(CreateView):
+class ArticleCreateView(SuccessMessageMixin, CreateView):
 
     """ Article Create View Definition """
 
     model = Article
     form_class = ArticleCreateForm
     template_name = "articles/create.html"
+    success_message = "Created successfully"
 
     def form_valid(self, form):
         article = form.save(commit=False)
@@ -53,7 +56,7 @@ class ArticleDetailView(DetailView, FormMixin):
 
 @method_decorator(ownership_decorators, "get")
 @method_decorator(ownership_decorators, "post")
-class ArticleUpdateView(UpdateView):
+class ArticleUpdateView(SuccessMessageMixin, UpdateView):
 
     """Article Update View Definition """
 
@@ -61,6 +64,7 @@ class ArticleUpdateView(UpdateView):
     form_class = ArticleUpdateForm
     context_object_name = "target_article"
     template_name = "articles/update.html"
+    success_message = "Updated successfully"
 
     def get_success_url(self):
         return reverse_lazy("articles:detail", kwargs={"pk": self.object.pk})
@@ -68,7 +72,7 @@ class ArticleUpdateView(UpdateView):
 
 @method_decorator(ownership_decorators, "get")
 @method_decorator(ownership_decorators, "post")
-class ArticleDeleteView(DeleteView):
+class ArticleDeleteView(SuccessMessageMixin, DeleteView):
 
     """Article Update View Definition """
 
@@ -76,6 +80,11 @@ class ArticleDeleteView(DeleteView):
     context_object_name = "target_article"
     template_name = "articles/delete.html"
     success_url = reverse_lazy("core:home")
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.warning(self.request, "Deleted successfully")
+        return response
 
 
 class ArticleListView(ListView):
