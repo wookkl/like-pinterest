@@ -28,6 +28,9 @@ services:
       - DJANGO_SECRET_KEY
       - MYSQL_USER
       - MYSQL_PASSWORD
+      - GH_CLIENT_ID
+      - GH_CLIENT_SECRET
+      - KAKAO_REST_API_KEY
 
   nginx:
     image: nginx:1.19.5
@@ -56,4 +59,10 @@ secrets:
   MYSQL_PASSWORD:
     external: true
   MYSQL_ROOT_PASSWORD:
+    external: true
+  GH_CLIENT_ID:
+    external: true
+  GH_CLIENT_SECRET:
+    external: true
+  KAKAO_REST_API_KEY:
     external: true

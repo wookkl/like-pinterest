@@ -4,6 +4,7 @@ import requests
 import random
 
 # Django
+from django.conf import settings
 from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.contrib.auth import login
@@ -64,8 +65,9 @@ class KakaoException(Exception):
 
 def login_kakao(request):
 
-    redirect_uri = "http://127.0.0.1:8000/accounts/login/kakao/callback"
-    rest_api_key = os.environ.get("KAKAO_REST_API_KEY")
+    redirect_uri = "http://158.247.216.90/accounts/login/kakao/callback"
+    rest_api_key = settings.KAKAO_REST_API_KEY
+
     return redirect(
         f"https://kauth.kakao.com/oauth/authorize?client_id={rest_api_key}&redirect_uri={redirect_uri}&response_type=code"
     )
@@ -75,8 +77,9 @@ def kakao_callback(request):
     try:
         code = request.GET.get("code", None)
         if code is not None:
-            client_id = os.environ.get("KAKAO_REST_API_KEY")
-            redirect_uri = "http://127.0.0.1:8000/accounts/login/kakao/callback"
+            client_id = settings.KAKAO_REST_API_KEY
+
+            redirect_uri = "http://158.247.216.90/accounts/login/kakao/callback"
 
             access_token = (
                 requests.post(
@@ -127,9 +130,9 @@ class GithubException(Exception):
 
 
 def login_github(request):
-    client_id = os.environ.get("GH_CLIENT_ID")
+    client_id = settings.GH_CLIENT_ID
     scope = "user:email"
-    redirect_uri = "http://127.0.0.1:8000/accounts/login/github/callback"
+    redirect_uri = "http://158.247.216.90/accounts/login/github/callback"
     return redirect(
         f"https://github.com/login/oauth/authorize?client_id={client_id}&scope={scope}&redirect_uri={redirect_uri}"
     )
@@ -139,8 +142,8 @@ def github_callback(request):
     try:
         code = request.GET.get("code", None)
         if code is not None:
-            client_id = os.environ.get("GH_CLIENT_ID")
-            client_secret = os.environ.get("GH_CLIENT_SECRET")
+            client_id = settings.GH_CLIENT_ID
+            client_secret = settings.GH_CLIENT_SECRET
             access_token = (
                 requests.post(
                     f"https://github.com/login/oauth/access_token?client_id={client_id}&client_secret={client_secret}&code={code}",

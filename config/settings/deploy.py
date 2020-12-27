@@ -33,3 +33,7 @@ DATABASES = {
         "PORT": "3306",
     }
 }
+
+KAKAO_REST_API_KEY = read_secret("KAKAO_REST_API_KEY")
+GH_CLIENT_ID = read_secret("GH_CLIENT_ID")
+GH_CLIENT_SECRET = read_secret("GH_CLIENT_SECRET")
