@@ -10,7 +10,7 @@
                 <a style="font-size: 0.6rem;"class="btn btn-outline-info rounded-pill me-2" href="{% url 'articles:update' target_article.pk %}">수정</a>
                 <a style="font-size: 0.6rem;"class="btn btn-outline-danger rounded-pill" href="{% url 'articles:delete' target_article.pk %}">삭제</a>
             {% endif %} 
-            <h4 class="text-center"><a href="{% url 'accounts:detail' target_article.writer.pk %}">{{ target_article.writer.profile.nickname }}</a></h4>
+            <h4 class="text-center mb-5"><a href="{% url 'accounts:detail' target_article.writer.pk %}">{{ target_article.writer.profile.nickname }}</a></h4>
             <img src="{{ target_article.image.url }} " style="width: 80%; border-radius: 1rem; margin-bottom: 1rem;"/>
             <p style="font-size: 1.5rem;text-align: left;">
                 {{ target_article.content|safe}}
