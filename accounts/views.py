@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
+from django.utils.translation import gettext as _
 from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.list import MultipleObjectMixin
@@ -44,7 +45,7 @@ class AccountCreateView(SuccessMessageMixin, CreateView):
     model = User
     form_class = UserCreationForm
     template_name = "accounts/create.html"
-    success_message = "Created successfully"
+    success_message = _("Created successfully")
 
     def form_valid(self, form):
         valid = super().form_valid(form)
@@ -111,7 +112,7 @@ def kakao_callback(request):
                         )
                         user_profile.save()
                     login(request, user)
-                    messages.info(request, "Welcome")
+                    messages.info(request, _("Welcome"))
                     return redirect(reverse("core:home"))
                 else:
                     raise KakaoException("user's info")
@@ -171,7 +172,7 @@ def github_callback(request):
                         user_profile.save()
                         user.save()
                     login(request, user)
-                    messages.info(request, "Welcome")
+                    messages.info(request, _("Welcome"))
                     return redirect(reverse("core:home"))
                 else:
                     raise GithubException("user's info")
@@ -193,7 +194,7 @@ class AccountLoginView(SuccessMessageMixin, LoginView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.info(self.request, "Welcome")
+        messages.info(self.request, _("Welcome"))
         return response
 
 
@@ -205,7 +206,7 @@ class AccountLogoutView(SuccessMessageMixin, LogoutView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.info(self.request, "Welcome")
+        messages.info(self.request, _("Welcome"))
         return response
 
 
@@ -236,7 +237,7 @@ class AccountUpdateView(SuccessMessageMixin, UpdateView):
     form_class = AccountUpdateForm
     context_object_name = "target_user"
     template_name = "accounts/update.html"
-    success_message = "Updated successfully"
+    success_message = _("Updated successfully")
 
     def get_success_url(self):
         pk = self.object.pk

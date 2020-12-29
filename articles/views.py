@@ -8,16 +8,17 @@ from django.views.generic import (
     DeleteView,
     ListView,
 )
-from django.utils.decorators import method_decorator
 from django.views.generic.edit import FormMixin
+from django.utils.translation import gettext as _
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 
 # local Django
 from .models import Article
+from comments.forms import CommentCreateForm
 from .decorators import article_ownership_required
 from .forms import ArticleCreateForm, ArticleUpdateForm
-from comments.forms import CommentCreateForm
 
 ownership_decorators = [login_required, article_ownership_required]
 
@@ -31,7 +32,7 @@ class ArticleCreateView(SuccessMessageMixin, CreateView):
     model = Article
     form_class = ArticleCreateForm
     template_name = "articles/create.html"
-    success_message = "Created successfully"
+    success_message = _("Created successfully")
 
     def form_valid(self, form):
         article = form.save(commit=False)
@@ -64,7 +65,7 @@ class ArticleUpdateView(SuccessMessageMixin, UpdateView):
     form_class = ArticleUpdateForm
     context_object_name = "target_article"
     template_name = "articles/update.html"
-    success_message = "Updated successfully"
+    success_message = _("Updated successfully")
 
     def get_success_url(self):
         return reverse_lazy("articles:detail", kwargs={"pk": self.object.pk})

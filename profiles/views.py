@@ -1,5 +1,6 @@
 # Django
 from django.urls import reverse_lazy
+from django.utils.translation import gettext as _
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.decorators import login_required
@@ -39,7 +40,7 @@ class ProfileUpdateView(SuccessMessageMixin, UpdateView):
     form_class = ProfileUpdateForm
     context_object_name = "target_profile"
     template_name = "profile/update.html"
-    success_message = "Updated successfully"
+    success_message = _("Updated successfully")
 
     def get_success_url(self):
         user_pk = self.object.user.pk

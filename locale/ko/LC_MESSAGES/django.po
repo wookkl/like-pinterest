@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-29 13:54+0000\n"
+"POT-Creation-Date: 2020-12-29 14:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: accounts/views.py:48 articles/views.py:35
+msgid "Created successfully"
+msgstr "생성 완료"
+
+#: accounts/views.py:115 accounts/views.py:175 accounts/views.py:197
+#: accounts/views.py:209
+msgid "Welcome"
+msgstr "안녕하세요"
+
+#: accounts/views.py:240 articles/views.py:68 profiles/views.py:43
+msgid "Updated successfully"
+msgstr "수정 완료"
 
 #: config/settings/base.py:142
 msgid "Korean"
@@ -154,4 +167,3 @@ msgstr "구독 취소"
 #: templates/projects/list.html:17
 msgid "No Projects yet"
 msgstr "아직 프로젝트가 없습니다"
-
