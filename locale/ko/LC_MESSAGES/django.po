@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-29 11:50+0000\n"
+"POT-Creation-Date: 2020-12-29 13:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,13 +17,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: config/settings/base.py:141
+#: config/settings/base.py:142
 msgid "Korean"
 msgstr "한국어"
 
-#: config/settings/base.py:142
+#: config/settings/base.py:143
 msgid "English"
 msgstr "영어"
+
+#: templates/accounts/create.html:8 templates/accounts/create.html:14
+#: templates/partials/header.html:15
+msgid "Sign up"
+msgstr "회원가입"
+
+#: templates/accounts/create.html:16
+msgid "or"
+msgstr "또는"
+
+#: templates/accounts/create.html:17 templates/accounts/login.html:17
+msgid "Kakao Login"
+msgstr "카카오 로그인"
+
+#: templates/accounts/create.html:18 templates/accounts/login.html:18
+msgid "Github Login"
+msgstr "깃허브 로그인"
+
+#: templates/accounts/delete.html:10 templates/articles/delete.html:13
+#: templates/articles/detail.html:13 templates/comments/delete.html:13
+#: templates/comments/detail.html:16
+msgid "Delete"
+msgstr "삭제"
+
+#: templates/accounts/detail.html:24
+msgid "Create profile"
+msgstr "프로필 생성"
+
+#: templates/accounts/login.html:8 templates/accounts/login.html:14
+#: templates/comments/create.html:15 templates/partials/header.html:16
+msgid "Log in"
+msgstr "로그인"
+
+#: templates/accounts/update.html:8
+msgid "Update info"
+msgstr "계정 수정"
+
+#: templates/accounts/update.html:14 templates/articles/update.html:14
+#: templates/profile/update.html:13
+msgid "Update"
+msgstr "수정"
+
+#: templates/articles/create.html:8
+msgid "Create article"
+msgstr "게시물 생성"
+
+#: templates/articles/create.html:14 templates/comments/create.html:12
+#: templates/profile/create.html:14 templates/projects/create.html:13
+msgid "Create"
+msgstr "생성"
+
+#: templates/articles/detail.html:12
+msgid "Modify"
+msgstr "수정"
+
+#: templates/articles/update.html:8
+msgid "Update article"
+msgstr "개시물 수정"
 
 #: templates/partials/footer.html:5
 msgid "Notice"
@@ -36,3 +94,64 @@ msgstr "제휴 문의"
 #: templates/partials/footer.html:7
 msgid "Service introduction"
 msgstr "서비스 소개"
+
+#: templates/partials/footer.html:19
+msgid "english"
+msgstr "영어"
+
+#: templates/partials/footer.html:24
+msgid "korean"
+msgstr "한국어"
+
+#: templates/partials/header.html:8
+msgid "Articles"
+msgstr "게시물"
+
+#: templates/partials/header.html:9
+msgid "Projects"
+msgstr "프로젝트"
+
+#: templates/partials/header.html:11
+msgid "Subscriptions"
+msgstr "구독"
+
+#: templates/partials/header.html:12
+msgid "My page"
+msgstr "내 정보"
+
+#: templates/partials/header.html:13
+msgid "Log out"
+msgstr "로그아웃"
+
+#: templates/profile/create.html:8
+msgid "Create Profile"
+msgstr "프로필 생성"
+
+#: templates/profile/update.html:7
+msgid "Update Profile"
+msgstr "프로필 수정"
+
+#: templates/profile/update.html:18
+msgid "Change Password"
+msgstr "비밀번호 변경"
+
+#: templates/profile/update.html:20
+msgid "Delete Account"
+msgstr "계정 삭제"
+
+#: templates/projects/create.html:7 templates/projects/list.html:21
+msgid "Create Project"
+msgstr "프로젝트 생성"
+
+#: templates/projects/detail.html:20
+msgid "Subscribe"
+msgstr "수독"
+
+#: templates/projects/detail.html:25
+msgid "Unsubscribe"
+msgstr "구독 취소"
+
+#: templates/projects/list.html:17
+msgid "No Projects yet"
+msgstr "아직 프로젝트가 없습니다"
+

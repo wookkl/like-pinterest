@@ -1,4 +1,5 @@
 {% load bootstrap4 %}
+{% load i18n %}
 
 {% block content %}
 <div style="text-align: center; max-width: 400px; margin: 4rem auto;">
@@ -8,10 +9,10 @@
                 {% csrf_token %}
                 {% bootstrap_form form %}
                 <input type="hidden" name="article_pk" value="{{ article.pk }}">
-                <input type="submit" class="btn btn-dark rounded-pill col-5 mt-3" value="Create" />
+                <input type="submit" class="btn btn-dark rounded-pill col-5 mt-3" value="{{ _('Create') }}" />
             </form>
         {% else %}
-            <a href="{% url 'accounts:login' %}?next={{ request.path }}" class="btn btn-dark rounded-pill col-5 mt-3">Login</a>
+            <a href="{% url 'accounts:login' %}?next={{ request.path }}" class="btn btn-dark rounded-pill col-5 mt-3">{{ _('Log in') }}</a>
         {% endif %}
     </div>
 </div>

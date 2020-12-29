@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div style="border: 1px solid #979797; border-radius: 1rem; padding: 5%; text-align:left; margin-bottom: 1rem;">
     <div class="mb-3">
         <strong>
@@ -11,7 +13,7 @@
     </div>
     {% if comment.writer == user %}
         <div style="text-align:right">
-            <a href="{% url 'comments:delete' comment.pk %}" class="btn btn-danger rounded-pill ">Delete</a>
+            <a href="{% url 'comments:delete' comment.pk %}" class="btn btn-danger rounded-pill ">{{ _('Delete') }}</a>
         </div>
     {% endif %}
 </div>

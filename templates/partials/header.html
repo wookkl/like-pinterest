@@ -1,17 +1,19 @@
+{% load i18n %}
+
 <header class="header d-flex flex-column justify-content-center">
     <div>
         <h1 class="logo"><a href="{% url 'core:home' %}">Winterest</a></h1>
     </div>
     <nav class="d-flex justify-content-between" style="margin: 0 auto;">
-        <a href="{% url 'core:home' %}"><span>Articles</span></a>
-        <a href="{% url 'projects:list' %}"><span>Projects</span></a>
+        <a href="{% url 'core:home' %}"><span>{{ _('Articles') }}</span></a>
+        <a href="{% url 'projects:list' %}"><span>{{ _('Projects') }}</span></a>
         {% if user.is_authenticated %}
-            <a href="{% url 'subscriptions:list' user.pk %}"><span>Subscriptions</span></a>
-            <a href="{% url 'accounts:detail' user.pk %}"><span>My page</span></a>
-            <a href="{% url 'accounts:logout' %}?next={% url 'accounts:login' %}"><span>Log out</span></a>
+            <a href="{% url 'subscriptions:list' user.pk %}"><span>{{ _('Subscriptions') }}</span></a>
+            <a href="{% url 'accounts:detail' user.pk %}"><span>{{ _('My page') }}</span></a>
+            <a href="{% url 'accounts:logout' %}?next={% url 'accounts:login' %}"><span>{{ _('Log out') }}</span></a>
         {% else %}
-            <a href="{% url 'accounts:create' %}?next={{ request.path }}"><span>Sign Up</span></a>
-            <a href="{% url 'accounts:login' %}?next={{ request.path }} "><span>Log In</span></a>
+            <a href="{% url 'accounts:create' %}?next={{ request.path }}"><span>{{ _('Sign up') }}</span></a>
+            <a href="{% url 'accounts:login' %}?next={{ request.path }} "><span>{{ _('Log in') }}</span></a>
         {% endif %}
     </nav>
 </header>

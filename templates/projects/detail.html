@@ -17,12 +17,12 @@
             {% if not subscription %}
                 <div>
                     <a class="btn btn-primary rounded-pill mt-3 mb-3" 
-                    href="{% url 'subscriptions:subscribe' %}?project_pk={{ target_project.pk }}">Subscribe</a>
+                    href="{% url 'subscriptions:subscribe' %}?project_pk={{ target_project.pk }}">{{ _('Subscribe') }}</a>
                 </div>
             {% else %}
                 <div>
                     <a class="btn btn-dark rounded-pill mt-3 mb-3" 
-                    href="{% url 'subscriptions:subscribe' %}?project_pk={{ target_project.pk }}">Unsubscribe</a>
+                    href="{% url 'subscriptions:subscribe' %}?project_pk={{ target_project.pk }}">{{ _('Unsubscribe') }}</a>
                 </div>
             {% endif %}
         {% endif %}

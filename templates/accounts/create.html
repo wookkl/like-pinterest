@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
+{% load i18n %}
 
 {% block content %}
 <div style="text-align: center; max-width: 400px; margin: 4rem auto;">
     <div>
-        <h4>Sign Up</h4>
+        <h4>{{ _('Sign up') }}</h4>
     </div>
     <div>
         <form action="{% url 'accounts:create' %}" method="POST">
             {% csrf_token %}
             {% bootstrap_form form %}
-            <input type="submit" class="btn btn-dark rounded-pill col-4 my-3" value="Sign Up" />
+            <input type="submit" class="btn btn-dark rounded-pill col-4 my-3" value="{{ _('Sign up') }}" />
         </form>
-        <div>or</div>
-        <a class="btn rounded-pill d-block col-4 mx-auto my-3" style="background-color: #f6d600; color:black" href="{% url 'accounts:kakao-login' %}">Kakao Login</a>
-        <a class="btn rounded-pill d-block col-4 mx-auto" style="background-color: #24282d; color:white" href="{% url 'accounts:github-login' %}">Github Login</a>
+        <div>{{ _('or') }}</div>
+        <a class="btn rounded-pill d-block col-4 mx-auto my-3" style="background-color: #f6d600; color:black" href="{% url 'accounts:kakao-login' %}">{{ _('Kakao Login') }}</a>
+        <a class="btn rounded-pill d-block col-4 mx-auto" style="background-color: #24282d; color:white" href="{% url 'accounts:github-login' %}">{{ _('Github Login') }}</a>
     </div>
 </div>
 {% endblock content %}

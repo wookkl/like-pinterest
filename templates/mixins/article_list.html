@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <div style="text-align: center;">
     {% if article_list %}
@@ -15,8 +16,6 @@
             <h1>No Articles yet</h1>
         </div>
     {% endif %}
-        
-    
     <div>
         <a class="btn btn-dark rounded-pill mt-3 mb-3 "href="{% url 'articles:create' %}">Create Article</a>
     </div>

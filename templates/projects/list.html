@@ -14,11 +14,11 @@
             {% include 'mixins/pagination.html' with page_obj=page_obj%}
         {% else %}
             <div>
-                <h1>No Projects yet</h1>
+                <h1>{{ _('No Projects yet') }}</h1>
             </div>
         {% endif %}
         <div>
-            <a class="btn btn-dark rounded-pill mt-3 mb-3 "href="{% url 'projects:create' %}">Create Project</a>
+            <a class="btn btn-dark rounded-pill mt-3 mb-3 "href="{% url 'projects:create' %}">{{ _('Create Project') }}</a>
         </div>
     </div>
     <script src="{% static 'js/magicgrid.js' %}"></script>

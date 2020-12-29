@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
+{% load i18n %}
 
 {% block content %}
 <div style="text-align: center; max-width: 400px; margin: 4rem auto;">
@@ -9,7 +10,7 @@
     <div>
         <form action="{% url 'articles:delete' target_article.pk %}" method="POST">
             {% csrf_token %}
-            <input type="submit" class="btn btn-dark rounded-pill col-4 mt-3" value="Delete" />
+            <input type="submit" class="btn btn-dark rounded-pill col-4 mt-3" value="{{ _('Delete') }}" />
         </form>
     </div>
 </div>

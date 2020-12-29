@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
+{% load i18n %}
 
 {% block content %}
 <div style="max-width: 700px; margin: 4rem auto;">
@@ -8,8 +9,8 @@
             <div class="mb-3">
                 <h1 class="me-2 d-inline">{{ target_article.title }}</h1>
                 {% if user == target_article.writer %}
-                    <a style="font-size: 0.6rem;"class="btn btn-outline-info rounded-pill me-2" href="{% url 'articles:update' target_article.pk %}">수정</a>
-                    <a style="font-size: 0.6rem;"class="btn btn-outline-danger rounded-pill" href="{% url 'articles:delete' target_article.pk %}">삭제</a>
+                    <a style="font-size: 0.6rem;"class="btn btn-outline-info rounded-pill me-2" href="{% url 'articles:update' target_article.pk %}">{{ _('Modify') }}</a>
+                    <a style="font-size: 0.6rem;"class="btn btn-outline-danger rounded-pill" href="{% url 'articles:delete' target_article.pk %}">{{ _('Delete') }}</a>
                 {% endif %} 
             </div>
             <h4 class="text-center mb-5"><a href="{% url 'accounts:detail' target_article.writer.pk %}">{{ target_article.writer.profile.nickname }}</a></h4>

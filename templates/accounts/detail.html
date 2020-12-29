@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
+{% load i18n %}
 
 {% block content %}
     <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
         <div class="d-flex flex-column align-items-center mb-5">
             {% if target_user.profile %}
-                
                 {% if target_user.profile.image %}
                     <img class="rounded-pill mb-3" style="height: 10rem; width: 10rem; object-fit: cover;" src="{{ target_user.profile.image.url }}" alt="photo">
                     {% else %}
@@ -21,7 +21,7 @@
                 </div>
                 <span class="fs-4">{{ target_user.profile.status_message }}</span>
             {% else %}
-                {% if user == target_user %}<a href=" {% url 'profiles:create' %}">Create profile</a>{% endif %}
+                {% if user == target_user %}<a href=" {% url 'profiles:create' %}">{{ _('Create profile') }}</a>{% endif %}
             {% endif %}
         </div>
     </div>

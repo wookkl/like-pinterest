@@ -4,20 +4,20 @@
 {% block content %}
 <div style="text-align: center; max-width: 400px; margin: 4rem auto;">
     <div>
-        <h4>Update Profile</h4>
+        <h4>{{ _('Update Profile') }}</h4>
     </div>
     <div>
         <form action="{% url 'profiles:update' target_profile.pk %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% bootstrap_form form %}
-            <input type="submit" class="btn btn-dark rounded-pill col-4 mt-3" value="Update" />
+            <input type="submit" class="btn btn-dark rounded-pill col-4 mt-3" value="{{ _('Update') }}" />
         </form>
     </div>
     <div class="d-flex flex-column my-3 ">
         {% if user.has_usable_password %}
-            <a class="btn btn-outline-info  rounded-pill mb-3" href="{% url 'accounts:update' target_profile.user.pk %}">Change Password</a>
+            <a class="btn btn-outline-info  rounded-pill mb-3" href="{% url 'accounts:update' target_profile.user.pk %}">{{ _('Change Password') }}</a>
         {% endif %}
-        <a class="btn btn-outline-danger rounded-pill" href="{% url 'accounts:delete' target_profile.user.pk %}">Delete Account</a>
+        <a class="btn btn-outline-danger rounded-pill" href="{% url 'accounts:delete' target_profile.user.pk %}">{{ _('Delete Account') }}</a>
     </div>
 </div>
 {% endblock content %}
