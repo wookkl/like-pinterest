@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-29 14:02+0000\n"
+"POT-Creation-Date: 2020-12-29 14:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,11 +30,11 @@ msgstr "안녕하세요"
 msgid "Updated successfully"
 msgstr "수정 완료"
 
-#: config/settings/base.py:142
+#: config/settings/base.py:141
 msgid "Korean"
 msgstr "한국어"
 
-#: config/settings/base.py:143
+#: config/settings/base.py:142
 msgid "English"
 msgstr "영어"
 
@@ -95,6 +95,10 @@ msgstr "수정"
 #: templates/articles/update.html:8
 msgid "Update article"
 msgstr "개시물 수정"
+
+#: templates/mixins/article_list.html:20
+msgid "Create Article"
+msgstr "게시물 생성"
 
 #: templates/partials/footer.html:5
 msgid "Notice"
