@@ -1,12 +1,40 @@
 {% load bootstrap4 %}
-
-<footer class="footer">
+{% load i18n %}
+<footer class="footer d-flex flex-column align-items-center">
     <div class="footer__btn">
-        <span>공지사항</span> |
-        <span>제휴문의</span> |
-        <span>서비스 소개</span>
+        <span>{{ _('Notice') }}</span> |
+        <span>{{ _('Partnership Inquiry') }}</span> |
+        <span>{{ _('Service introduction') }}</span>
     </div>
-    <div class="my-4">
+    <div class="mt-4">
         <h4 class="logo"><a href="{% url 'core:home' %}">Winterest</a></h4>
     </div>
+    {% get_current_language as LANGUAGE_CODE %}
+    <div class="col-1">
+        <select id="js-lang" class="mb-3 form-select form-select-sm">
+            <option value="en"
+            {% if LANGUAGE_CODE == 'en' %}
+            selected
+            {% endif %}
+        >{{ _('english') }}</option>
+        <option value="ko"
+            {% if LANGUAGE_CODE == 'ko' %}
+                selected
+            {% endif %}
+        >{{ _('korean') }}</option>
+        </select>
+    </div>
+    <script>
+        const onSelectChanged = () => {
+            const selected = lang.value;
+            fetch(`{% url 'core:switch-language' %}?lang=${selected}`).then(() => window.location.reload());
+        }
+        const lang = document.getElementById("js-lang");
+        if (lang.addEventListener) {
+            lang.addEventListener('change', onSelectChanged, false);
+        }
+        else {
+            lang.attachEvent('onchange', onSelectChanged, false);
+        }
+    </script>
 </footer>

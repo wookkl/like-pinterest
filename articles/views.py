@@ -96,3 +96,4 @@ class ArticleListView(ListView):
     template_name = "home.html"
     paginate_by = 25
     paginate_orphans = 5
+    ordering = "-created_at"
