@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-29 14:43+0000\n"
+"POT-Creation-Date: 2020-12-29 14:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,7 +79,7 @@ msgstr "계정 수정"
 msgid "Update"
 msgstr "수정"
 
-#: templates/articles/create.html:8
+#: templates/articles/create.html:8 templates/mixins/article_list.html:20
 msgid "Create article"
 msgstr "게시물 생성"
 
@@ -95,10 +95,6 @@ msgstr "수정"
 #: templates/articles/update.html:8
 msgid "Update article"
 msgstr "개시물 수정"
-
-#: templates/mixins/article_list.html:20
-msgid "Create Article"
-msgstr "게시물 생성"
 
 #: templates/partials/footer.html:5
 msgid "Notice"
@@ -171,3 +167,6 @@ msgstr "구독 취소"
 #: templates/projects/list.html:17
 msgid "No Projects yet"
 msgstr "아직 프로젝트가 없습니다"
+
+#~ msgid "Create Article"
+#~ msgstr "게시물 생성"
